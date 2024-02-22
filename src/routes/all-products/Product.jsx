@@ -54,10 +54,6 @@ const Product = ({
   }, []);
 
   useEffect(() => {
-    handleProductHasNoAttributes();
-  }, []);
-
-  useEffect(() => {
     filterCurrency(item, selectedCurrency);
   }, [item, selectedCurrency]);
 

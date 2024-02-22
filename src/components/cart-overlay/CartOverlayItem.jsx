@@ -1,58 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SelectedAttributes from "../attributes/SelectedAttributes.jsx";
 import ChangeCartItemQuantity from "../ChangeCartItemQuantity.jsx";
 
-export default class CartOverlayItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pricing: "",
-      pricingCurrencySymbol: "",
-      pricingAmount: "",
-      priceAmount: "",
-    };
-    this.filterCurrency = this.filterCurrency.bind(this);
-  }
-  GetPricing = () => {
-    this.setState({
-      pricing: this.getPrice(
-        this.props.singleProduct.prices,
-        this.props.selectedCurrency
-      ),
-    });
+const CartOverlayItem = ({ singleProduct, selectedCurrency, handleAddProduct, handleRemoveProduct }) => {
+  const [pricing, setPricing] = useState("");
+  const [priceAmount, setPriceAmount] = useState("");
+  const getPricing = () => {
+    const price = getPrice(singleProduct.prices, selectedCurrency);
+    setPricing(price);
   };
-  filterCurrency = (item, selectedCurrency) => {
+  const filterCurrency = (item, selectedCurrency) => {
     const [correctPrice] = item?.prices?.filter((price) => {
       return price.currency.symbol === selectedCurrency;
     });
-    this.setState({ priceAmount: correctPrice.amount.toFixed(2) });
-    this.setState({ pricing: correctPrice });
+    setPriceAmount(correctPrice.amount.toFixed(2));
+    setPricing(correctPrice);
   };
 
-  getPrice = (prices, currency) => {
+  const getPrice = (prices, currency) => {
     const [correctPrice] = prices.filter(
       (price) => price.currency.symbol === currency
     );
-    this.setState({ priceAmount: correctPrice.amount.toFixed(2) });
+    setPriceAmount(correctPrice.amount.toFixed(2));
     return correctPrice;
   };
-  componentDidMount() {
-    this.GetPricing();
-    this.setState({
-      pricingCurrencySymbol: this.state.pricing?.currency?.symbol,
-    });
-    this.setState({ pricingCurrencySymbol: this.state.pricing?.amount });
-  }
-  shouldComponentUpdate(nextProps) {
-    if (this.props.selectedCurrency !== nextProps.selectedCurrency) {
-      this.filterCurrency(this.props.singleProduct, nextProps.selectedCurrency);
-    }
-    return true;
-  }
-  render() {
-    const { singleProduct, handleAddProduct, handleRemoveProduct } = this.props;
 
-    const { pricing, priceAmount } = this.state;
+  useEffect(() => {
+    getPricing();
+  }, []);
+
+  useEffect(() => {
+    filterCurrency(singleProduct, selectedCurrency);
+  }, [selectedCurrency]);
+
     return (
       <article className="cartoverlay-products-single">
         <section className="cart-overlay-item">
@@ -92,5 +72,6 @@ export default class CartOverlayItem extends React.Component {
         />
       </article>
     );
-  }
-}
+};
+
+export default CartOverlayItem;

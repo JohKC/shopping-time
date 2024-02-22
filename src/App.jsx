@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import {
   currenciesObj, itemsObj, categoriesObj
-} from "./data/all-products";
-import Header from "./components/header/Header.js";
-import AllProducts from "./routes/all-products/AllProducts.js";
-import SingleProduct from "./routes/single-product/SingleProduct.js";
-import Cart from "./routes/cart/Cart.js"
-import Landing from "./routes/landing/Landing.js";
+} from "./data/all-products.js";
+import Header from "./components/header/Header.jsx";
+import AllProducts from "./routes/all-products/AllProducts.jsx";
+import SingleProduct from "./routes/single-product/SingleProduct.jsx";
+import Cart from "./routes/cart/Cart.jsx"
+import Landing from "./routes/landing/Landing.jsx";
 import Checkout from "./routes/checkout/Checkout";
 import NotFound from "./routes/not-found/NotFound";
 import Order from "./routes/order/Order";

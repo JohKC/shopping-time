@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import EmptyCart from "../../assets/images/cart-icon.png";
-import CartOverlay from "./CartOverlay.js";
+import CartOverlay from "./CartOverlay.jsx";
 import { ResetLocation } from "../../helpers/ResetLocation";
 
 const CartIcon = ({ totalPayment,

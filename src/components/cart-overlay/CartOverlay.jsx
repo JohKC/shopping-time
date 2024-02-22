@@ -13,7 +13,7 @@ const CartOverlay = ({ totalPayment,
   handleAddProduct,
   handleRemoveProduct, activeMenu, removeCartOverlay, clearCart, closeMenu }) => {
   return (
-    <React.Fragment>
+    <>
       {cartItems.length === 0 ? (
         <section className={`cart-overlay ${activeMenu ? 'active-overlay' : ''}`}>
           <img className="cartoverlay-hamburger" src={activeHamburger} alt="toggle menu" onClick={() => removeCartOverlay()} />
@@ -71,7 +71,7 @@ const CartOverlay = ({ totalPayment,
         </section>
       )
       }
-    </React.Fragment>
+    </>
   );
 }
 

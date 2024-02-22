@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductShowcase = ({ singleProduct }) => {
   return (
-    <React.Fragment>
+    <>
       {singleProduct && singleProduct.gallery && (
         <section className="product-showcase">
           {singleProduct.gallery.map((image, index) => (
@@ -10,7 +10,7 @@ const ProductShowcase = ({ singleProduct }) => {
           ))}
         </section>
       )}
-    </React.Fragment>
+    </>
   );
 }
 

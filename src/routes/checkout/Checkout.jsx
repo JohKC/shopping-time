@@ -158,7 +158,7 @@ const Checkout = ({ setOrderFormValue }) => {
 
                 <form onSubmit={submitForm}>
                     {currentStep === "details" ?
-                        <React.Fragment>
+                        <>
                             <h2>Personal details</h2>
                             <section className="checkout-inputs">
                                 <input
@@ -193,9 +193,9 @@ const Checkout = ({ setOrderFormValue }) => {
                                 />
                                 <span className="error">{formErrors.phonenumber}</span>
                             </section>
-                        </React.Fragment> :
+                        </> :
                         currentStep === "address" ?
-                            <React.Fragment>
+                            <>
                                 <h2>Delivery information</h2>
                                 <section className="checkout-inputs">
                                     <input
@@ -238,11 +238,11 @@ const Checkout = ({ setOrderFormValue }) => {
                                     />
                                     <span className="error">{formErrors.province}</span>
                                 </section>
-                            </React.Fragment>
+                            </>
                             :
                             currentStep === "payment" ?
 
-                                <React.Fragment>
+                                <>
                                     <h2>Payment</h2>
                                     <section className="checkout-inputs">
                                         <input
@@ -269,7 +269,7 @@ const Checkout = ({ setOrderFormValue }) => {
                                             placeholder="CVV" />
                                         <span className="error">{formErrors.cvv}</span>
                                     </section>
-                                </React.Fragment>
+                                </>
                                 : null}
                     {currentStep === "details" ?
                         <button className="active-add-to-cart" type="button" onClick={() => { setStep("address", "details") }}>Continue to address</button>

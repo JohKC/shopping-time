@@ -67,7 +67,7 @@ const CartSingleItem = ({
             showNavs={false}
             width={290}
             height={288}
-            showBullets={true}
+            showBullets={false}
           />
         ) : (
           <SimpleImageSlider
@@ -78,7 +78,7 @@ const CartSingleItem = ({
             navSize={10}
             navStyle={2}
             bgColor='#FFFF'
-            showBullets={true}
+            showBullets={false}
           />
         )}
       </section>

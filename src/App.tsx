@@ -4,7 +4,6 @@ import Header from "./components/header/Header";
 import { useActiveCategory } from "./components/hooks/useActiveCategory";
 import { categoriesObj, currenciesObj, itemsObj } from "./data/all-products.js";
 import { AttributeItem } from "./models/AttributeItem";
-import { Category } from "./models/Category";
 import { CheckoutForm } from "./models/CheckoutForm";
 import { Currency } from "./models/Currency";
 import { Item } from "./models/Item";
@@ -18,7 +17,6 @@ import Order from "./routes/order/Order";
 import SingleProduct from "./routes/single-product/SingleProduct";
 
 const App = () => {
-  const [allCategories, setAllCategories] = useState<Category[]>([]);
   const [allCurrencies, setAllCurrencies] = useState<Currency[]>([]);
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>({
     label: "USD",
@@ -52,9 +50,6 @@ const App = () => {
       "selectedCurrency",
       JSON.stringify(newSelectedCurrency)
     );
-  };
-  const getCategories = () => {
-    setAllCategories(categoriesObj);
   };
 
   const getProducts = (targetcategory: string) => {
@@ -325,7 +320,6 @@ const App = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    getCategories();
     getCurrencies();
   }, [activeCategory]);
 
@@ -333,7 +327,7 @@ const App = () => {
     <>
       <Header
         productsQuantity={productsQuantity}
-        allCategories={allCategories}
+        allCategories={categoriesObj}
         activeCategory={activeCategory}
         selectedCurrency={selectedCurrency}
         allCurrencies={allCurrencies}

@@ -17,7 +17,6 @@ import Order from "./routes/order/Order";
 import SingleProduct from "./routes/single-product/SingleProduct";
 
 const App = () => {
-  const [allCurrencies, setAllCurrencies] = useState<Currency[]>([]);
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>({
     label: "USD",
     symbol: "$",
@@ -59,13 +58,6 @@ const App = () => {
         : itemsObj.filter((item) => item.category === targetcategory);
     return targetProducts;
   };
-
-  const getCurrencies = async () => {
-    setAllCurrencies(currenciesObj);
-  };
-  useEffect(() => {
-    setAllCurrencies(currenciesObj);
-  }, []);
 
   const matchAttributes = (
     userSelectedAttributes: AttributeItem[],
@@ -320,7 +312,6 @@ const App = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    getCurrencies();
   }, [activeCategory]);
 
   return (
@@ -330,7 +321,7 @@ const App = () => {
         allCategories={categoriesObj}
         activeCategory={activeCategory}
         selectedCurrency={selectedCurrency}
-        allCurrencies={allCurrencies}
+        allCurrencies={currenciesObj}
         changeCurrency={changeCurrency}
         totalPayment={totalPayment}
         cartItems={cartItems}
